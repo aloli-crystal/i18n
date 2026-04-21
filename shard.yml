@@ -1,0 +1,16 @@
+name: i18n
+version: 0.1.0
+
+description: >
+  Moteur i18n Crystal pur (zéro dépendance externe), minimaliste. Lookup
+  d'une clé symbolique dans un `Hash` enregistré, détection de la locale
+  via les variables d'environnement standards (LC_ALL, LC_MESSAGES, LANG),
+  interpolation `%{name}`. Pensé pour les CLI et petits services qui
+  veulent deux ou trois langues sans adopter un framework i18n complet.
+
+authors:
+  - ALOLI sas <philippe@aloli.fr>
+
+crystal: ">= 1.19.1"
+
+license: MIT

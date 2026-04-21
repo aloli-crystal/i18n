@@ -1,0 +1,107 @@
+= i18n
+:toc: left
+:toclevels: 2
+
+Moteur i18n Crystal pur, minimaliste, zéro dépendance externe.
+
+image:https://github.com/aloli-crystal/crystal-i18n/actions/workflows/ci.yml/badge.svg[CI,link=https://github.com/aloli-crystal/crystal-i18n/actions/workflows/ci.yml]
+
+== Pourquoi
+
+Les shards i18n existants sont souvent surdimensionnés pour un CLI ou un
+petit service. Ce shard fait une seule chose : traduire une clé
+symbolique dans la langue de l'utilisateur, avec interpolation simple,
+et fallback sur l'anglais. Les traductions vivent dans des petits
+fichiers YAML plats, un par langue — ajoutez une langue = ajoutez un
+fichier, sans toucher les autres.
+
+== Installation
+
+[source,yaml]
+----
+dependencies:
+  i18n:
+    github: aloli-crystal/crystal-i18n
+    version: ~> 0.1
+----
+
+== Usage
+
+Créez vos fichiers de locale :
+
+[source,yaml]
+.locales/fr.yml
+----
+greeting: "Bonjour %{name} !"
+farewell: "Au revoir."
+----
+
+[source,yaml]
+.locales/en.yml
+----
+greeting: "Hello %{name}!"
+farewell: "Goodbye."
+----
+
+Puis :
+
+[source,crystal]
+----
+require "i18n"
+
+I18n.load("locales/fr.yml", locale: :fr)
+I18n.load("locales/en.yml", locale: :en)
+
+I18n.t(:greeting, name: "Philippe")
+# => "Bonjour Philippe !" si LANG=fr*, "Hello Philippe!" sinon
+
+I18n.t(:farewell)
+# => "Au revoir." ou "Goodbye."
+----
+
+== Détection de la locale
+
+Ordre de priorité :
+
+. Override manuel : `I18n.locale = :fr`
+. Variables d'environnement `LC_ALL` / `LC_MESSAGES` / `LANG` → deux
+  premières lettres
+. `:en` par défaut
+
+== Fallback
+
+Si la locale active n'a pas la clé demandée, lookup sur `:en`. Si
+`:en` n'a pas non plus la clé : `KeyError` (erreur de programmation,
+on préfère crasher que renvoyer du texte incohérent).
+
+== Interpolation
+
+Placeholders style Ruby : `%{name}`. Les placeholders non fournis sont
+laissés tels quels dans la sortie, pour faciliter le debug.
+
+== Licence
+
+MIT, © 2026 ALOLI sas.
+
+---
+
+= i18n (English)
+
+A minimal pure-Crystal i18n engine. No external shards.
+
+One flat YAML file per locale, lookup by symbol key, interpolation with
+`%{name}` placeholders, fallback to English if the active locale is
+missing a key.
+
+[source,crystal]
+----
+require "i18n"
+
+I18n.load("locales/fr.yml", locale: :fr)
+I18n.load("locales/en.yml", locale: :en)
+
+I18n.t(:greeting, name: "Philippe")  # uses LANG to pick locale
+I18n.locale = :fr                    # manual override
+----
+
+MIT licence, © 2026 ALOLI sas.
