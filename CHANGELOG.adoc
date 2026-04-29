@@ -7,6 +7,14 @@ Toutes les modifications notables de ce projet sont documentées dans ce fichier
 Le format s'inspire de https://keepachangelog.com/fr/1.1.0/[Keep a Changelog]
 et ce projet suit https://semver.org/lang/fr/[Semantic Versioning].
 
+== 0.1.1 (29 avril 2026)
+
+=== Modifié
+
+* **Repo GitHub renommé** `aloli-crystal/crystal-i18n` → `aloli-crystal/i18n`
+  (convention de nommage Aloli : créations sans préfixe `crystal-`).
+  Les anciens liens redirigent automatiquement.
+
 == 0.1.0 (21 avril 2026)
 
 === Ajouté
@@ -19,7 +27,7 @@ et ce projet suit https://semver.org/lang/fr/[Semantic Versioning].
 * Détection de la locale via `LC_ALL` / `LC_MESSAGES` / `LANG` (deux
   premières lettres) ; override manuel via `I18n.locale = :xx`.
 * `I18n.reset` pour vider la table (utile en tests).
-* Extraction du moteur i18n initialement embarqué dans crystal-beryl
+* Extraction du moteur i18n initialement embarqué dans beryl
   (module `Beryl::I18n`) après retour d'expérience : « toujours des
   petits fichiers maintenables que des gros fichiers obèses ».
 * CI GitHub Actions : format + specs Linux et FreeBSD 15.

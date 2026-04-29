@@ -4,7 +4,7 @@
 
 Moteur i18n Crystal pur, minimaliste, zéro dépendance externe.
 
-image:https://github.com/aloli-crystal/crystal-i18n/actions/workflows/ci.yml/badge.svg[CI,link=https://github.com/aloli-crystal/crystal-i18n/actions/workflows/ci.yml]
+image:https://github.com/aloli-crystal/i18n/actions/workflows/ci.yml/badge.svg[CI,link=https://github.com/aloli-crystal/i18n/actions/workflows/ci.yml]
 
 == Pourquoi
 
@@ -21,7 +21,7 @@ fichier, sans toucher les autres.
 ----
 dependencies:
   i18n:
-    github: aloli-crystal/crystal-i18n
+    github: aloli-crystal/i18n
     version: ~> 0.1
 ----
 
