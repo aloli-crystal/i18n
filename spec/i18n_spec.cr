@@ -8,7 +8,7 @@ end
 
 describe I18n do
   it "expose une version" do
-    I18n::VERSION.should eq("0.1.0")
+    I18n::VERSION.should eq("0.1.2")
   end
 
   describe ".load + .t" do
