@@ -1,4 +1,5 @@
 require "./spec_helper"
+require "yaml"
 
 private def write_yaml(content : String) : String
   path = File.tempname(prefix: "i18n-spec-", suffix: ".yml")
@@ -8,7 +9,8 @@ end
 
 describe I18n do
   it "expose une version" do
-    I18n::VERSION.should eq("0.1.2")
+    yml = YAML.parse(File.read(File.join(__DIR__, "..", "shard.yml")))
+    I18n::VERSION.should eq(yml["version"].as_s)
   end
 
   describe ".load + .t" do
